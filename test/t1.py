@@ -93,4 +93,44 @@ def post_web(url):
     print(res.status_code)
 
 
-post_web('http://127.0.0.1:5000/')
+# post_web('http://127.0.0.1:5000/')
+
+
+
+headers = {
+    'Pragma': 'no-cache',
+    'Cache-Control': 'no-cache',
+    'X-USER-TOKEN': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyMCIsInVzZXJOYW1lIjoiSFgwMDEyMTM4IiwiZXhwIjoxNTY2Mzg3ODA1LCJ1c2VySWQiOiIyMCIsImlhdCI6MTU2NjM3MzQwNX0.9w__2RGncpdMvbiQAmk75ThgPwDaTXF1VyY1xKVs_zFduUEoJ3_6X2q3ZVYsFIpChKeLEWelhwlmMxEP4lU9QA',
+    'Origin': 'http://xx.cn',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36',
+    'Accept': '*/*',
+    # 'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundarycDnnz7eKalCPv6GJ',
+    'Referer': 'http://xx.cn/manager/', 'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8'}
+
+url = 'http://127.0.0.1:5000/'
+
+data = {
+    'type': 0,
+    'goodsname': '大青芒果约500g',
+    'marketprice': 12,
+    'productprice': 15,
+    'virtual': 0,
+    'virtualsend': 0,
+    'dispatchtype': 0,
+    'dispatchid': 0,
+    'status': 1,
+    'isstatustime': 1,
+    'statustime[start]': '2019-12-14 00:26',
+    'statustime[end]': '2020-01-14 00:26',
+    'total': 100,
+    'totalcnf': 0,
+    'optionArray': {"option_stock":[],"option_id":[],"option_ids":[],"option_title":[],"option_presellprice":[],"option_marketprice":[],"option_productprice":[],"option_costprice":[],"option_goodssn":[],"option_productsn":[],"option_weight":[],"option_virtual":[]}
+
+
+}
+
+files = {'attach': ('0effc9be56493a08.jpg', open('./0effc9be56493a08.jpg', 'rb'))}
+r = requests.post(url, headers=headers, files=files)
+print(requests.Request('POST', url, headers=headers, files=files).prepare().body.decode(
+    'ascii'))  # 打印字段名和类型
+print(r.text)

@@ -27,4 +27,9 @@ def get_proxy_data(text):
     return ip_list, len(ip_list)
 
 
-print(get_proxy_data(get_html()))
+# print(get_proxy_data(get_html()))
+
+res = requests.get('https://www.baidu.com/')
+res.encoding = 'utf-8'
+soup = BeautifulSoup(res.text, 'lxml')
+print(soup)
